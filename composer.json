@@ -1,10 +1,9 @@
 {
-    "name": "piotr-cz/xmpp-prebind-php",
+    "name": "dusta/xmpp-prebind-php",
     "description": "This class is for prebinding a XMPP Session with PHP.",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "type": "library",
     "keywords": ["xmpp", "php", "prebind"],
-    "homepage": "http://jolicode.com",
     "license": "MIT",
     "authors": [
         {
@@ -17,13 +16,17 @@
         {
             "name": "Alex Knol",
             "email": "alex@cobrowser.net"
+        },
+        {
+            "name": "Sławomir Kaleta",
+            "email": "slaszka@gmail.com"
         }
     ],
     "autoload": {
         "classmap": ["lib/"]
     },
     "require": {
-        "php": ">=5.3",
+        "php": ">=5.6",
         "lib-libxml": "*"
     }
 }
