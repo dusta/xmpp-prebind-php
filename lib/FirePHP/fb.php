@@ -43,7 +43,7 @@
  */
 
 if(!class_exists('FirePHP')) {
-    require_once dirname(__FILE__) . DIRECTORY_SEPARATOR . 'FirePHP.class.php';
+    include_once dirname(__FILE__) . DIRECTORY_SEPARATOR . 'FirePHP.class.php';
 }
 
 /**
@@ -51,8 +51,8 @@ if(!class_exists('FirePHP')) {
  * The data can be displayed in the Firebug Console or in the
  * "Server" request tab.
  * 
- * @see http://www.firephp.org/Wiki/Reference/Fb
- * @param mixed $Object
+ * @see    http://www.firephp.org/Wiki/Reference/Fb
+ * @param  mixed $Object
  * @return true
  * @throws Exception
  */
@@ -61,7 +61,7 @@ function fb()
     $instance = FirePHP::getInstance(true);
   
     $args = func_get_args();
-    return call_user_func_array(array($instance,'fb'),$args);
+    return call_user_func_array(array($instance,'fb'), $args);
 }
 
 
@@ -70,8 +70,8 @@ class FB
     /**
      * Enable and disable logging to Firebug
      * 
-     * @see FirePHP->setEnabled()
-     * @param boolean $Enabled TRUE to enable, FALSE to disable
+     * @see    FirePHP->setEnabled()
+     * @param  boolean $Enabled TRUE to enable, FALSE to disable
      * @return void
      */
     public static function setEnabled($Enabled)
@@ -83,7 +83,7 @@ class FB
     /**
      * Check if logging is enabled
      * 
-     * @see FirePHP->getEnabled()
+     * @see    FirePHP->getEnabled()
      * @return boolean TRUE if enabled
      */
     public static function getEnabled()
@@ -97,22 +97,22 @@ class FB
      * 
      * Filters are used to exclude object members.
      * 
-     * @see FirePHP->setObjectFilter()
-     * @param string $Class The class name of the object
-     * @param array $Filter An array or members to exclude
+     * @see    FirePHP->setObjectFilter()
+     * @param  string $Class  The class name of the object
+     * @param  array  $Filter An array or members to exclude
      * @return void
      */
     public static function setObjectFilter($Class, $Filter)
     {
-      $instance = FirePHP::getInstance(true);
-      $instance->setObjectFilter($Class, $Filter);
+        $instance = FirePHP::getInstance(true);
+        $instance->setObjectFilter($Class, $Filter);
     }
   
     /**
      * Set some options for the library
      * 
-     * @see FirePHP->setOptions()
-     * @param array $Options The options to be set
+     * @see    FirePHP->setOptions()
+     * @param  array $Options The options to be set
      * @return void
      */
     public static function setOptions($Options)
@@ -124,7 +124,7 @@ class FB
     /**
      * Get options for the library
      * 
-     * @see FirePHP->getOptions()
+     * @see    FirePHP->getOptions()
      * @return array The options
      */
     public static function getOptions()
@@ -136,8 +136,8 @@ class FB
     /**
      * Log object to firebug
      * 
-     * @see http://www.firephp.org/Wiki/Reference/Fb
-     * @param mixed $Object
+     * @see    http://www.firephp.org/Wiki/Reference/Fb
+     * @param  mixed $Object
      * @return true
      * @throws Exception
      */
@@ -145,7 +145,7 @@ class FB
     {
         $instance = FirePHP::getInstance(true);
         $args = func_get_args();
-        return call_user_func_array(array($instance,'fb'),$args);
+        return call_user_func_array(array($instance,'fb'), $args);
     }
 
     /**
@@ -155,8 +155,8 @@ class FB
      *   Collapsed: [true|false]
      *   Color:     [#RRGGBB|ColorName]
      *
-     * @param string $Name
-     * @param array $Options OPTIONAL Instructions on how to log the group
+     * @param  string $Name
+     * @param  array  $Options OPTIONAL Instructions on how to log the group
      * @return true
      */
     public static function group($Name, $Options=null)
@@ -179,9 +179,9 @@ class FB
     /**
      * Log object with label to firebug console
      *
-     * @see FirePHP::LOG
-     * @param mixes $Object
-     * @param string $Label
+     * @see    FirePHP::LOG
+     * @param  mixes  $Object
+     * @param  string $Label
      * @return true
      * @throws Exception
      */
@@ -193,9 +193,9 @@ class FB
     /**
      * Log object with label to firebug console
      *
-     * @see FirePHP::INFO
-     * @param mixes $Object
-     * @param string $Label
+     * @see    FirePHP::INFO
+     * @param  mixes  $Object
+     * @param  string $Label
      * @return true
      * @throws Exception
      */
@@ -207,9 +207,9 @@ class FB
     /**
      * Log object with label to firebug console
      *
-     * @see FirePHP::WARN
-     * @param mixes $Object
-     * @param string $Label
+     * @see    FirePHP::WARN
+     * @param  mixes  $Object
+     * @param  string $Label
      * @return true
      * @throws Exception
      */
@@ -221,9 +221,9 @@ class FB
     /**
      * Log object with label to firebug console
      *
-     * @see FirePHP::ERROR
-     * @param mixes $Object
-     * @param string $Label
+     * @see    FirePHP::ERROR
+     * @param  mixes  $Object
+     * @param  string $Label
      * @return true
      * @throws Exception
      */
@@ -235,9 +235,9 @@ class FB
     /**
      * Dumps key and variable to firebug server panel
      *
-     * @see FirePHP::DUMP
-     * @param string $Key
-     * @param mixed $Variable
+     * @see    FirePHP::DUMP
+     * @param  string $Key
+     * @param  mixed  $Variable
      * @return true
      * @throws Exception
      */
@@ -249,8 +249,8 @@ class FB
     /**
      * Log a trace in the firebug console
      *
-     * @see FirePHP::TRACE
-     * @param string $Label
+     * @see    FirePHP::TRACE
+     * @param  string $Label
      * @return true
      * @throws Exception
      */
@@ -262,9 +262,9 @@ class FB
     /**
      * Log a table in the firebug console
      *
-     * @see FirePHP::TABLE
-     * @param string $Label
-     * @param string $Table
+     * @see    FirePHP::TABLE
+     * @param  string $Label
+     * @param  string $Table
      * @return true
      * @throws Exception
      */

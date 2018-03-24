@@ -34,70 +34,70 @@
 //
 
 /**
-* Client implementation of various SASL mechanisms
-*
-* @author  Richard Heyes <richard@php.net>
-* @author  Michael Weibel <michael.weibel@amiadogroup.com> (made it work for PHP5)
-* @access  public
-* @version 1.0.1
-* @package Auth_SASL
-*/
-require_once(dirname(__FILE__) . '/SASL/Exception.php');
+ * Client implementation of various SASL mechanisms
+ *
+ * @author  Richard Heyes <richard@php.net>
+ * @author  Michael Weibel <michael.weibel@amiadogroup.com> (made it work for PHP5)
+ * @access  public
+ * @version 1.0.1
+ * @package Auth_SASL
+ */
+require_once dirname(__FILE__) . '/SASL/Exception.php';
 
 class Auth_SASL
 {
     /**
-    * Factory class. Returns an object of the request
-    * type.
-    *
-    * @param string $type One of: Anonymous
-    *                             Plain
-    *                             CramMD5
-    *                             DigestMD5
-    *                     Types are not case sensitive
-    */
+     * Factory class. Returns an object of the request
+     * type.
+     *
+     * @param string $type One of: Anonymous
+     *                     Plain
+     *                     CramMD5
+     *                     DigestMD5
+     *                     Types are not case sensitive
+     */
     public static function factory($type)
     {
         switch (strtolower($type)) {
-            case 'anonymous':
-                $filename  = 'SASL/Anonymous.php';
-                $classname = 'Auth_SASL_Anonymous';
-                break;
+        case 'anonymous':
+            $filename  = 'SASL/Anonymous.php';
+            $classname = 'Auth_SASL_Anonymous';
+            break;
 
-            case 'login':
-                $filename  = 'SASL/Login.php';
-                $classname = 'Auth_SASL_Login';
-                break;
+        case 'login':
+            $filename  = 'SASL/Login.php';
+            $classname = 'Auth_SASL_Login';
+            break;
 
-            case 'plain':
-                $filename  = 'SASL/Plain.php';
-                $classname = 'Auth_SASL_Plain';
-                break;
+        case 'plain':
+            $filename  = 'SASL/Plain.php';
+            $classname = 'Auth_SASL_Plain';
+            break;
 
-            case 'external':
-                $filename  = 'SASL/External.php';
-                $classname = 'Auth_SASL_External';
-                break;
+        case 'external':
+            $filename  = 'SASL/External.php';
+            $classname = 'Auth_SASL_External';
+            break;
 
-            case 'cram-md5':
-                $filename  = 'SASL/CramMD5.php';
-                $classname = 'Auth_SASL_CramMD5';
-                break;
+        case 'cram-md5':
+            $filename  = 'SASL/CramMD5.php';
+            $classname = 'Auth_SASL_CramMD5';
+            break;
 
-            case 'digest-md5':
-                $filename  = 'SASL/DigestMD5.php';
-                $classname = 'Auth_SASL_DigestMD5';
-                break;
+        case 'digest-md5':
+            $filename  = 'SASL/DigestMD5.php';
+            $classname = 'Auth_SASL_DigestMD5';
+            break;
 
-            default:
-                throw new Auth_SASL_Exception('Invalid SASL mechanism type ("' . $type .'")');
+        default:
+            throw new Auth_SASL_Exception('Invalid SASL mechanism type ("' . $type .'")');
                 break;
         }
 
-        require_once(dirname(__FILE__) . '/' . $filename);
+        include_once dirname(__FILE__) . '/' . $filename;
         $obj = new $classname();
         return $obj;
     }
 }
 
-?>
+

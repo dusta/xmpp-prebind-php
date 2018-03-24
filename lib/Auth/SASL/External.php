@@ -34,30 +34,30 @@
 //
 
 /**
-* Implmentation of EXTERNAL SASL mechanism
-*
-* @author  Christoph Schulz <develop@kristov.de>
-* @author  Michael Weibel <michael.weibel@amiadogroup.com> (made it work for PHP5)
-* @access  public
-* @version 1.0.4
-* @package Auth_SASL
-*/
+ * Implmentation of EXTERNAL SASL mechanism
+ *
+ * @author  Christoph Schulz <develop@kristov.de>
+ * @author  Michael Weibel <michael.weibel@amiadogroup.com> (made it work for PHP5)
+ * @access  public
+ * @version 1.0.4
+ * @package Auth_SASL
+ */
 
-require_once(dirname(__FILE__) . '/Common.php');
+require_once dirname(__FILE__) . '/Common.php';
 
 class Auth_SASL_External extends Auth_SASL_Common
 {
     /**
-    * Returns EXTERNAL response
-    *
-    * @param  string $authcid   Authentication id (username)
-    * @param  string $pass      Password
-    * @param  string $authzid   Autorization id
-    * @return string            EXTERNAL Response
-    */
+     * Returns EXTERNAL response
+     *
+     * @param  string $authcid Authentication id (username)
+     * @param  string $pass    Password
+     * @param  string $authzid Autorization id
+     * @return string            EXTERNAL Response
+     */
     public function getResponse($authcid, $pass, $authzid = '')
     {
         return $authzid;
     }
 }
-?>
+

@@ -34,33 +34,33 @@
 //
 
 /**
-* Implmentation of DIGEST-MD5 SASL mechanism
-*
-* @author  Richard Heyes <richard@php.net>
-* @author  Michael Weibel <michael.weibel@amiadogroup.com> (made it work for PHP5)
-* @access  public
-* @version 1.0.1
-* @package Auth_SASL
-*/
+ * Implmentation of DIGEST-MD5 SASL mechanism
+ *
+ * @author  Richard Heyes <richard@php.net>
+ * @author  Michael Weibel <michael.weibel@amiadogroup.com> (made it work for PHP5)
+ * @access  public
+ * @version 1.0.1
+ * @package Auth_SASL
+ */
 
-require_once(dirname(__FILE__) . '/Common.php');
+require_once dirname(__FILE__) . '/Common.php';
 
 class Auth_SASL_DigestMD5 extends Auth_SASL_Common
 {
     /**
-    * Provides the (main) client response for DIGEST-MD5
-    * requires a few extra parameters than the other
-    * mechanisms, which are unavoidable.
-    *
-    * @param  string $authcid   Authentication id (username)
-    * @param  string $pass      Password
-    * @param  string $challenge The digest challenge sent by the server
-    * @param  string $hostname  The hostname of the machine you're connecting to
-    * @param  string $service   The servicename (eg. imap, pop, acap etc)
-    * @param  string $authzid   Authorization id (username to proxy as)
-    * @return string            The digest response (NOT base64 encoded)
-    * @access public
-    */
+     * Provides the (main) client response for DIGEST-MD5
+     * requires a few extra parameters than the other
+     * mechanisms, which are unavoidable.
+     *
+     * @param  string $authcid   Authentication id (username)
+     * @param  string $pass      Password
+     * @param  string $challenge The digest challenge sent by the server
+     * @param  string $hostname  The hostname of the machine you're connecting to
+     * @param  string $service   The servicename (eg. imap, pop, acap etc)
+     * @param  string $authzid   Authorization id (username to proxy as)
+     * @return string            The digest response (NOT base64 encoded)
+     * @access public
+     */
     public function getResponse($authcid, $pass, $challenge, $hostname, $service, $authzid = '')
     {
         $challenge = $this->parseChallenge($challenge);
@@ -75,8 +75,10 @@ class Auth_SASL_DigestMD5 extends Auth_SASL_Common
             $response_value = $this->getResponseValue($authcid, $pass, $challenge['realm'], $challenge['nonce'], $cnonce, $digest_uri, $authzid);
 
             if ($challenge['realm']) {
-                return sprintf('username="%s",realm="%s"' . $authzid_string  .
-',nonce="%s",cnonce="%s",nc=00000001,qop=auth,digest-uri="%s",response=%s,maxbuf=%d', $authcid, $challenge['realm'], $challenge['nonce'], $cnonce, $digest_uri, $response_value, $challenge['maxbuf']);
+                return sprintf(
+                    'username="%s",realm="%s"' . $authzid_string  .
+                    ',nonce="%s",cnonce="%s",nc=00000001,qop=auth,digest-uri="%s",response=%s,maxbuf=%d', $authcid, $challenge['realm'], $challenge['nonce'], $cnonce, $digest_uri, $response_value, $challenge['maxbuf']
+                );
             } else {
                 return sprintf('username="%s"' . $authzid_string  . ',nonce="%s",cnonce="%s",nc=00000001,qop=auth,digest-uri="%s",response=%s,maxbuf=%d', $authcid, $challenge['nonce'], $cnonce, $digest_uri, $response_value, $challenge['maxbuf']);
             }
@@ -86,13 +88,13 @@ class Auth_SASL_DigestMD5 extends Auth_SASL_Common
     }
 
     /**
-    * Parses and verifies the digest challenge*
-    *
-    * @param  string $challenge The digest challenge
-    * @return array             The parsed challenge as an assoc
-    *                           array in the form "directive => value".
-    * @access private
-    */
+     * Parses and verifies the digest challenge*
+     *
+     * @param  string $challenge The digest challenge
+     * @return array             The parsed challenge as an assoc
+     *                           array in the form "directive => value".
+     * @access private
+     */
     private function parseChallenge($challenge)
     {
         $tokens = array();
@@ -112,7 +114,7 @@ class Auth_SASL_DigestMD5 extends Auth_SASL_Common
                     $tokens[$matches[1]] = array($tokens[$matches[1]], preg_replace('/^"(.*)"$/', '\\1', $matches[2]));
                 }
 
-            // Any other multiple instance = failure
+                // Any other multiple instance = failure
             } elseif (!empty($tokens[$matches[1]])) {
                 $tokens = array();
                 break;
@@ -147,18 +149,18 @@ class Auth_SASL_DigestMD5 extends Auth_SASL_Common
     }
 
     /**
-    * Creates the response= part of the digest response
-    *
-    * @param  string $authcid    Authentication id (username)
-    * @param  string $pass       Password
-    * @param  string $realm      Realm as provided by the server
-    * @param  string $nonce      Nonce as provided by the server
-    * @param  string $cnonce     Client nonce
-    * @param  string $digest_uri The digest-uri= value part of the response
-    * @param  string $authzid    Authorization id
-    * @return string             The response= part of the digest response
-    * @access private
-    */
+     * Creates the response= part of the digest response
+     *
+     * @param  string $authcid    Authentication id (username)
+     * @param  string $pass       Password
+     * @param  string $realm      Realm as provided by the server
+     * @param  string $nonce      Nonce as provided by the server
+     * @param  string $cnonce     Client nonce
+     * @param  string $digest_uri The digest-uri= value part of the response
+     * @param  string $authzid    Authorization id
+     * @return string             The response= part of the digest response
+     * @access private
+     */
     private function getResponseValue($authcid, $pass, $realm, $nonce, $cnonce, $digest_uri, $authzid = '')
     {
         if ($authzid == '') {
@@ -171,11 +173,11 @@ class Auth_SASL_DigestMD5 extends Auth_SASL_Common
     }
 
     /**
-    * Creates the client nonce for the response
-    *
-    * @return string  The cnonce value
-    * @access private
-    */
+     * Creates the client nonce for the response
+     *
+     * @return string  The cnonce value
+     * @access private
+     */
     private function getCnonce()
     {
         if (file_exists('/dev/urandom') && $fd = fopen('/dev/urandom', 'r')) {
@@ -194,4 +196,4 @@ class Auth_SASL_DigestMD5 extends Auth_SASL_Common
         }
     }
 }
-?>
+

@@ -31,7 +31,10 @@
 /**
  * Auth SASL Exception
  *
- * @author Michael Weibel <michael.weibel@amiadogroup.com>
+ * @author  Michael Weibel <michael.weibel@amiadogroup.com>
  * @package Auth_SASL
  */
-class Auth_SASL_Exception extends Exception {}
+class Auth_SASL_Exception extends Exception
+{
+
+}

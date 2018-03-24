@@ -34,35 +34,35 @@
 //
 
 /**
-* Implmentation of CRAM-MD5 SASL mechanism
-*
-* @author  Richard Heyes <richard@php.net>
-* @author  Michael Weibel <michael.weibel@amiadogroup.com> (made it work for PHP5)
-* @access  public
-* @version 1.0.1
-* @package Auth_SASL
-*/
+ * Implmentation of CRAM-MD5 SASL mechanism
+ *
+ * @author  Richard Heyes <richard@php.net>
+ * @author  Michael Weibel <michael.weibel@amiadogroup.com> (made it work for PHP5)
+ * @access  public
+ * @version 1.0.1
+ * @package Auth_SASL
+ */
 
-require_once(dirname(__FILE__) . '/Common.php');
+require_once dirname(__FILE__) . '/Common.php';
 
 class Auth_SASL_CramMD5 extends Auth_SASL_Common
 {
     /**
-    * Implements the CRAM-MD5 SASL mechanism
-    * This DOES NOT base64 encode the return value,
-    * you will need to do that yourself.
-    *
-    * @param string $user      Username
-    * @param string $pass      Password
-    * @param string $challenge The challenge supplied by the server.
-    *                          this should be already base64_decoded.
-    *
-    * @return string The string to pass back to the server, of the form
-    *                "<user> <digest>". This is NOT base64_encoded.
-    */
+     * Implements the CRAM-MD5 SASL mechanism
+     * This DOES NOT base64 encode the return value,
+     * you will need to do that yourself.
+     *
+     * @param string $user      Username
+     * @param string $pass      Password
+     * @param string $challenge The challenge supplied by the server.
+     *                          this should be already base64_decoded.
+     *
+     * @return string The string to pass back to the server, of the form
+     *                "<user> <digest>". This is NOT base64_encoded.
+     */
     public function getResponse($user, $pass, $challenge)
     {
         return $user . ' ' . $this->HMAC_MD5($pass, $challenge);
     }
 }
-?>
+

@@ -34,26 +34,26 @@
 //
 
 /**
-* Common functionality to SASL mechanisms
-*
-* @author  Richard Heyes <richard@php.net>
-* @author  Michael Weibel <michael.weibel@amiadogroup.com> (made it work for PHP5)
-* @access  public
-* @version 1.0.1
-* @package Auth_SASL
-*/
+ * Common functionality to SASL mechanisms
+ *
+ * @author  Richard Heyes <richard@php.net>
+ * @author  Michael Weibel <michael.weibel@amiadogroup.com> (made it work for PHP5)
+ * @access  public
+ * @version 1.0.1
+ * @package Auth_SASL
+ */
 
-require_once(dirname(__FILE__) . '/Exception.php');
+require_once dirname(__FILE__) . '/Exception.php';
 
 class Auth_SASL_Common
 {
     /**
-    * Function which implements HMAC MD5 digest
-    *
-    * @param  string $key  The secret key
-    * @param  string $data The data to protect
-    * @return string       The HMAC MD5 digest
-    */
+     * Function which implements HMAC MD5 digest
+     *
+     * @param  string $key  The secret key
+     * @param  string $data The data to protect
+     * @return string       The HMAC MD5 digest
+     */
     protected function HMAC_MD5($key, $data)
     {
         if (strlen($key) > 64) {
@@ -73,4 +73,4 @@ class Auth_SASL_Common
         return $digest;
     }
 }
-?>
+

@@ -34,32 +34,32 @@
 //
 
 /**
-* This is technically not a SASL mechanism, however
-* it's used by Net_Sieve, Net_Cyrus and potentially
-* other protocols , so here is a good place to abstract
-* it.
-*
-* @author  Richard Heyes <richard@php.net>
-* @author  Michael Weibel <michael.weibel@amiadogroup.com> (made it work for PHP5)
-* @access  public
-* @version 1.0
-* @package Auth_SASL
-*/
+ * This is technically not a SASL mechanism, however
+ * it's used by Net_Sieve, Net_Cyrus and potentially
+ * other protocols , so here is a good place to abstract
+ * it.
+ *
+ * @author  Richard Heyes <richard@php.net>
+ * @author  Michael Weibel <michael.weibel@amiadogroup.com> (made it work for PHP5)
+ * @access  public
+ * @version 1.0
+ * @package Auth_SASL
+ */
 
-require_once(dirname(__FILE__) . '/Common.php');
+require_once dirname(__FILE__) . '/Common.php';
 
 class Auth_SASL_Login extends Auth_SASL_Common
 {
     /**
-    * Pseudo SASL LOGIN mechanism
-    *
-    * @param  string $user Username
-    * @param  string $pass Password
-    * @return string       LOGIN string
-    */
+     * Pseudo SASL LOGIN mechanism
+     *
+     * @param  string $user Username
+     * @param  string $pass Password
+     * @return string       LOGIN string
+     */
     public function getResponse($user, $pass)
     {
         return sprintf('LOGIN %s %s', $user, $pass);
     }
 }
-?>
+
