@@ -124,7 +124,7 @@ class XmppPrebind
         */
 
         $maxInt = 10000000000;
-        if (is_32bit() === true) {
+        if (function_exists('is_32bit') == true AND is_32bit() === true) {
             $maxInt = 2147483647; //  On 32-bit systems, they overflow above 2147483647. On 64-bit systems, they overflow above 9223372036854775807.
         }
 
