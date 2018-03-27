@@ -123,9 +123,9 @@ class XmppPrebind
         * @link http://xmpp.org/extensions/xep-0124.html#rids
         */
 
-        $maxInt = 10000000000;
-        if (function_exists('is_32bit') == true AND is_32bit() === true) {
-            $maxInt = 2147483647; //  On 32-bit systems, they overflow above 2147483647. On 64-bit systems, they overflow above 9223372036854775807.
+        $maxInt = 2147483647; // On 32-bit systems, they overflow above 2147483647.
+        if (PHP_INT_MAX > 2147483647) {
+            $maxInt = 10000000000;  // On 64-bit systems, they overflow above 9223372036854775807.
         }
 
         if (function_exists('mt_rand')) {
